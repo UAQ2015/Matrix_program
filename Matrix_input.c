@@ -7,7 +7,7 @@ int main()
     A=insert();
     return 0;
 }
-int insert()
+int** insert()
 {
     int n=3,i,j;
     int A[n][n];
