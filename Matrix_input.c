@@ -1,13 +1,13 @@
 #include <stdio.h>
-void insert(int A[n][n]);
+void insert(int n,int A[n][n]);
 int main()
 {
     int n=3;
     int A[n][n];
-    insert(A);
+    insert(n,A);
     return 0;
 }
-void insert(int A[n][n])
+void insert(int n,int A[n][n])
 {
     int i,j;
     for (i=0;i<n;i++)
