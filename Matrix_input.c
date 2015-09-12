@@ -1,20 +1,20 @@
 #include <stdio.h>
-void insert(int n,int A[n][n]);
+void insert(int size,int matrix[size][size]);
 int main()
 {
-    int n=3;
-    int A[n][n];
-    insert(n,A);
+    int size=3;
+    int matrix[size][size];
+    insert(size,matrix);
     return 0;
 }
-void insert(int n,int A[n][n])
+void insert(int size,int matrix[size][size])
 {
-    int i,j;
-    for (i=0;i<n;i++)
-        for (j=0;j<n;j++)
+    int row,col;
+    for (row=0;row<size;row++)
+        for (col=0;col<size;col++)
         {
-            printf("\nInput value %i, %i: ", 1+i,1+j);
-            scanf("%i",&A[i][j]);
-            }
+            printf("\nInput value in row  %i and column  %i: ", 1+row,1+col);
+            scanf("%i",&matrix[row][col]);
+        }
 }
 
