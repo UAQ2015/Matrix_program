@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+int insert();
 int main()
 {
     int n=3;
