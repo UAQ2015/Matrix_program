@@ -24,6 +24,6 @@ void multiplication(int size,int matrixres[size][size],int matrix1[size][size],i
     for(row=0;row<size;row++)
 	for(col=0;col<size;col++)
 		for(aux=0,matrixres[row][col]=0;aux<size;aux++)
-			matrixres[row][col]=matrixres[row][col]+matrix1[row][aux]*matrix2[aux][col]
+			matrixres[row][col]=matrixres[row][col]+matrix1[row][aux]*matrix2[aux][col];
 }
 
