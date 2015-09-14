@@ -41,10 +41,12 @@ int determinant(int size, int matrix[size][size])
 	{
 		for(j=1;j<size;j++)
 			for(h=0;h<size;h++)
+			{
 				if(h<i)
 				   submatrix[j-1][h]=matrix[j][h];
 				if(h>i)
 				   submatrix[j-1][h-1]=matrix[j][h];
+			}
 		pow=1;
 		for(h=1;h<=i;h++)
 			pow=pow*(-1);
