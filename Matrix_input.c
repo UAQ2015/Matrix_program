@@ -5,9 +5,10 @@ int determinant(int size, int matrix[size][size]);
 void insert(int size,int matrix[size][size]);
 int main()
 {
-    int size=3;
+    int size=3,det;
     int matrix[size][size];
     insert(size,matrix);
+    printf("the determiant is: %i",determinat(size,matrix));
     return 0;
 }
 void insert(int size,int matrix[size][size])
@@ -41,9 +42,9 @@ int determinant(int size, int matrix[size][size])
 		for(j=1;j<size;j++)
 			for(h=0;h<size;h++)
 				if(h<i)
-				   submatrix[j-1][h]=A[j][h];
+				   submatrix[j-1][h]=matrix[j][h];
 				if(h>i)
-				   submatrix[j-1][h-1]=A[j][h];
+				   submatrix[j-1][h-1]=matrix[j][h];
                 result=matrix[0][i]*determinante(size-1,submatrix[0][i])*pow(-1,i)+result;	
 	}
     return result;
