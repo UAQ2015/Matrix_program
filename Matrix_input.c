@@ -5,10 +5,10 @@ int determinant(int size, int matrix[size][size]);
 void insert(int size,int matrix[size][size]);
 int main()
 {
-    int size=3,det;
+    int size=3;
     int matrix[size][size];
     insert(size,matrix);
-    printf("the determiant is: %i",determinat(size,matrix));
+    printf("the determiant is: %i",determinant(size,matrix));
     return 0;
 }
 void insert(int size,int matrix[size][size])
