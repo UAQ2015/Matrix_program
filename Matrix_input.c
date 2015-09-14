@@ -47,7 +47,7 @@ int determinant(int size, int matrix[size][size])
 				   submatrix[j-1][h-1]=matrix[j][h];
 		pow=1;
 		for(h=1;h<=i;h++)
-			pow=pow*(-1)
+			pow=pow*(-1);
                 result=matrix[0][i]*determinant(size-1,submatrix[0][i])*pow+result;	
 	}
     return result;
