@@ -31,7 +31,7 @@ void multiplication(int size,int matrixres[size][size],int matrix1[size][size],i
 }
 int determinant(int size, int matrix[size][size])
 {
-    int result=0,i,j,h;
+    int result=0,i,j,h,pow;
     if (size==1)
 	return matrix[0][0];
     else
@@ -45,7 +45,10 @@ int determinant(int size, int matrix[size][size])
 				   submatrix[j-1][h]=matrix[j][h];
 				if(h>i)
 				   submatrix[j-1][h-1]=matrix[j][h];
-                result=matrix[0][i]*determinante(size-1,submatrix[0][i])*pow(-1,i)+result;	
+		pow=1;
+		for(h=1;h<=i;h++)
+			pow=pow*(-1)
+                result=matrix[0][i]*determinant(size-1,submatrix[0][i])*pow+result;	
 	}
     return result;
     }
