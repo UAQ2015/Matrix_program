@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 void multiplication(int size,int matrixres[size][size],int matrix1[size][size],int matrix2[size][size]);
-int *determinant(int size, int matrix[size][size]);
+int determinant(int size, int matrix[size][size]);
 void insert(int size,int matrix[size][size]);
 int main()
 {
@@ -29,7 +29,7 @@ void multiplication(int size,int matrixres[size][size],int matrix1[size][size],i
 		for(aux=0,matrixres[row][col]=0;aux<size;aux++)
 			matrixres[row][col]=matrixres[row][col]+matrix1[row][aux]*matrix2[aux][col];
 }
-int *determinant(int size, int matrix[size][size])
+int determinant(int size, int matrix[size][size])
 {
     int result=0,i,j,h,pow;
     if (size==1)
