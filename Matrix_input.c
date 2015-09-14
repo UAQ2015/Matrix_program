@@ -8,7 +8,7 @@ int main()
     int size=3;
     int matrix[size][size];
     insert(size,matrix);
-    printf("the determiant is: %i",determinant(size,matrix));
+    printf("\nthe determiant is: %i\n",determinant(size,matrix));
     return 0;
 }
 void insert(int size,int matrix[size][size])
