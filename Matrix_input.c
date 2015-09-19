@@ -5,13 +5,13 @@ int determinant(int size, int matrix[size][size]);
 void insert(int size,int matrix[size][size]);
 void add( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size]);
 void substract( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size]);
+void transpose (int size, int matrix[size][size], int transposed_matrix[size][size]);
 
 int main()
 {
     int size=3;
     int matrix[size][size];
     insert(size,matrix);
-    printf("\nthe determiant is: %i\n",determinant(size,matrix));
     return 0;
 }
 void insert(int size,int matrix[size][size])
@@ -79,4 +79,10 @@ void substract( int size, int matrix1[size][size],int matrix2[size][size],int ma
 }
 
 
-
+void transpose (int size, int matrix[size][size], int transposed_matrix[size][size])
+{
+	int row, col;
+	for (row = 0; row < size; row++)
+		for(col = 0; col < size; col++)
+			transposed_matrix[col][row] = matrix[row][col];
+}
