@@ -6,7 +6,7 @@ void insert(int size,int matrix[size][size]);
 void add( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size]);
 void substract( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size]);
 void transpose (int size, int matrix[size][size], int transposed_matrix[size][size]);
-
+void print_matrix (int size, int matrix [size][size]);
 int main()
 {
     int size=3;
@@ -86,3 +86,16 @@ void transpose (int size, int matrix[size][size], int transposed_matrix[size][si
 		for(col = 0; col < size; col++)
 			transposed_matrix[col][row] = matrix[row][col];
 }
+
+void print_matrix (int size, int matrix [size][size])
+{
+    int row,col;
+    for (row=0;row<size;row++)
+    {    
+	for (col=0;col<size;col++)   
+            printf(" %i   ", matrix[row],matrix[col]);
+        printf("\n");
+    }    
+}
+
+	
