@@ -11,9 +11,10 @@ void print_matrix (int size, int matrix [size][size]);
 void menu (void);
 int main()
 {
-    menu;	
+    menu();	
     return 0;
 }
+
 void menu ()
 {
 	int option=0, result;
@@ -37,36 +38,43 @@ void menu ()
 	switch(option)
 	{
 		case 1:
-			insert(size,matrix1[size][size]);
-			insert(size,matrix2[size][size]);
-			insert_null(size,matrix3[size][size]);
-			add(size,matrix1[size][size],matrix2[size][size],matrix3[size][size]);
-			print_matrix(size, matrix3[size][size]);
+			printf("Give me matrix 1\n");
+			insert(size, matrix1);
+			printf("Give me matrix 2\n");
+			insert(size, matrix2);
+			insert_null(size, matrix3);
+			add(size, matrix1, matrix2, matrix3);
+			print_matrix(size, matrix3);
 			break;
 		case 2:
-			insert(size,matrix1[size][size]);
-                        insert(size,matrix2[size][size]);
-                        insert_null(size,matrix3[size][size]);
-                        substract(size,matrix1[size][size],matrix2[size][size],matrix3[size][size]);
-                        print_matrix(size, matrix3[size][size]);
+			printf("Give me matrix 1\n");
+			insert(size, matrix1);
+			printf("Give me matrix 2\n");
+                        insert(size, matrix2);
+                        insert_null(size, matrix3);
+                        substract(size, matrix1, matrix2, matrix3);
+                        print_matrix(size, matrix3);
                         break;
 		case 3:
-			insert(size,matrix1[size][size]);
-                        insert(size,matrix2[size][size]);
-                        insert_null(size,matrix3[size][size]);
-                        multiplication(size,matrix3[size][size],matrix1[size][size],matrix2[size][size]);
-                        print_matrix(size, matrix3[size][size]);
+			printf("Give me matrix 1\n");
+			insert(size,matrix1);
+			printf("Give me matrix 2\n");
+                        insert(size,matrix2);
+                        insert_null(size,matrix3);
+                        multiplication(size,matrix3,matrix1,matrix2);
+                        print_matrix(size, matrix3);
                         break;
 		case 4:
-			insert(size,matrix1[size][size]);
+			printf("Give me the matrix");
+			insert(size,matrix1);
 			result=determinant(size,matrix1);
 			break;
 		case 5:
-						
-			insert(size,matrix1[size][size]);
-                        insert_null(size,matrix2[size][size]);
-			transpose(size,matrix1[size][size],matrix2[size][size]);
-			print_matrix(size,matrix2[size][size]);
+			printf("Give me matrix 1\n");
+			insert(size,matrix1);
+                        insert_null(size,matrix2);
+			transpose(size,matrix1,matrix2);
+			print_matrix(size,matrix2);
 			break; 
 		case 6:
 			break;
@@ -161,10 +169,11 @@ void transpose (int size, int matrix[size][size], int transposed_matrix[size][si
 void print_matrix (int size, int matrix [size][size])
 {
     int row,col;
+	printf("\nYour result is:\n");
     for (row=0;row<size;row++)
     {    
 	for (col=0;col<size;col++)   
-            printf(" %i   ", matrix[row],matrix[col]);
+            printf(" %i   ", matrix[row][col]);
         printf("\n");
     }    
 }
