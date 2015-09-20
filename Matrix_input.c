@@ -21,8 +21,6 @@ void menu ()
     	int matrix1[size][size];
 	int matrix2[size][size];
 	int matrix3[size][size];
-
-    	insert(size,matrix);
 	do
 	{
 	do
@@ -37,6 +35,7 @@ void menu ()
 		}	
 	}while(option==0);
 	switch(option)
+	{
 		case 1:
 			insert(size,matrix1[size][size]);
 			insert(size,matrix2[size][size]);
@@ -66,19 +65,18 @@ void menu ()
 						
 			insert(size,matrix1[size][size]);
                         insert_null(size,matrix2[size][size]);
-			transpose(matrix1[size][size],matrix2[size][size];
+			transpose(size,matrix1[size][size],matrix2[size][size]);
 			print_matrix(size,matrix2[size][size]);
 			break; 
 		case 6:
 			break;
 		case 7:
 			break;
-	system("clear"); 
+	} 
 	}while(option!=7);
 }
 			
 			
-}
 void insert(int size,int matrix[size][size])
 {
     int row,col;
