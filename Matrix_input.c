@@ -26,7 +26,7 @@ void menu ()
 	{
 	do
 	{
-		printf("Click the number of what do you want to do\n");
+		printf("\nClick the number of what do you want to do\n");
 		printf("1.- Add\n2.- Substract\n3.- Multiplication\n4.- Determinant\n5.- Transpose\n6.- Inverse\n7.- Exit ");
 		scanf("%i", &option);
 		if(option>7||option==0)
@@ -68,6 +68,7 @@ void menu ()
 			printf("Give me the matrix");
 			insert(size,matrix1);
 			result=determinant(size,matrix1);
+			printf("\nYour determinant is: %i\n", result);
 			break;
 		case 5:
 			printf("Give me matrix 1\n");
