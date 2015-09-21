@@ -8,6 +8,7 @@ void add( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[
 void substract( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size]);
 void transpose (int size, int matrix[size][size], int transposed_matrix[size][size]);
 void print_matrix (int size, int matrix [size][size]);
+void inverse_matrix (int size, int matrix[size][size], int inverse_matrix[size][size]);
 void menu (void);
 int main()
 {
@@ -78,6 +79,21 @@ void menu ()
 			print_matrix(size,matrix2);
 			break; 
 		case 6:
+			printf("\nATTENTION: This function only works with 3x3 matrices.");
+			printf("\nGive me the matrix: ");
+			insert(size, matrix1);
+			if (size != 3)
+			{
+				printf("\nSorry! I wasn't programmed to work with matrices other than 3x3 matrices :(");
+				break;
+			}
+			if (determinant(size, matrix1) == 0)
+				printf("\nThe matrix given has no inverse matrix. The determinant is zero.");
+			else 
+			{
+				inverse_matrix(size, matrix1, matrix2);				
+				print_matrix(size, matrix2);
+			}
 			break;
 		case 7:
 			break;
@@ -179,4 +195,17 @@ void print_matrix (int size, int matrix [size][size])
     }    
 }
 
-	
+void inverse_matrix (int size, int matrix [size][size], int inverse_matrix [size][size])
+{
+	int det;
+	det = (1/ determinant(size, matrix));
+	inverse_matrix [0][0] = det * ((matrix [1][1] * matrix [2][2]) - (matrix [1][2] * matrix [2][1]));
+	inverse_matrix [0][1] = det * ((matrix [2][1] * matrix [0][2]) - (matrix [2][2] * matrix [0][1]));	
+	inverse_matrix [0][2] = det * ((matrix [0][1] * matrix [1][2]) - (matrix [0][2] * matrix [1][1]));	
+	inverse_matrix [1][0] = det * ((matrix [1][2] * matrix [2][0]) - (matrix [1][0] * matrix [2][2]));	
+	inverse_matrix [1][1] = det * ((matrix [2][2] * matrix [0][0]) - (matrix [2][0] * matrix [0][2]));	
+	inverse_matrix [1][2] = det * ((matrix [0][2] * matrix [1][0]) - (matrix [0][0] * matrix [1][2]));	
+	inverse_matrix [2][0] = det * ((matrix [1][0] * matrix [2][1]) - (matrix [1][1] * matrix [2][0]));	
+	inverse_matrix [2][1] = det * ((matrix [2][0] * matrix [0][1]) - (matrix [2][1] * matrix [0][0]));	
+	inverse_matrix [2][2] = det * ((matrix [0][0] * matrix [1][1]) - (matrix [0][1] * matrix [1][0]));	
+}	
