@@ -29,7 +29,7 @@ void menu ()
 		do
 		{
 			printf("\nClick the number of what do you want to do\n");
-			printf("1.- Add\n2.- Substract\n3.- Multiplication\n4.- Scalar multiplication\n 5.-Determinant\n6.- Transpose\n7.- Inverse\n0.- Exit\n ");
+			printf("1.- Add\n2.- Substract\n3.- Multiplication\n4.- Scalar multiplication\n5.- Determinant\n6.- Transpose\n7.- Inverse\n0.- Exit\n ");
 			scanf("%i", &option);
 			if(option>8)
 			{
