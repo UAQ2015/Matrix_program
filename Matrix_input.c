@@ -2,15 +2,15 @@
 #include <math.h>
 void multiplication(int size1, int size2, int size3, int matrixres[size1][size2],int matrix1[size2][size3],int matrix2[size1][size3]);
 int determinant(int size, int matrix[size][size]);
-void insert(int size,int matrix[size][size]);
-void insert_null(int size,int matrix[size][size]);
-void add( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size]);
-void substract( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size]);
-void transpose (int size, int matrix[size][size], int transposed_matrix[size][size]);
-void print_matrix (int size, int matrix [size][size]);
+void scalar_multiplication(int size1, int size2, int matrix1[size1][size2], int matrix_result[size1][size2],int scalar);
 void inverse_matrix (int size, int matrix[size][size], int inverse_matrix[size][size]);
-void scalar_multiplication(int size,int matrix1[size][size],int matrix_result[size][size],int scalar);
+void insert(int size1, int size2, int matrix[size1][size2]);
+void add( int size1, int size2, int matrix1[size1][size2],int matrix2[size1][size2],int matrix3[size1][size2]);
+void substract( int size1, int size2, int matrix1[size1][size2],int matrix2[size1][size2],int matrix3[size1][size2]);
+void transpose (int size1, int size2, int matrix[size1][size2], int transposed_matrix[size2][size1]);
+void print_matrix (int size1, int size2, int matrix [size1][size2]);
 void menu (void);
+void insert_null(int size1, int size2 ,int matrix[size1][size2]);
 int main()
 {
 	menu();	
@@ -20,10 +20,7 @@ int main()
 void menu ()
 {
 	int option=9, result;
-	int size=3, scalar;
-	int matrix1[size][size];
-	int matrix2[size][size];
-	int matrix3[size][size];
+	int size1, size2, size3, scalar;
 	do
 	{
 		do
@@ -40,54 +37,83 @@ void menu ()
 		switch(option)
 		{
 			case 1:
-				printf("Give me matrix 1\n");
-				insert(size, matrix1);
+				printf("\nGive me the number of rows: ");
+				scanf("%i",&size1);
+				printf("\nGive me the number of columns: ");
+				scanf("%i",&size2);
+				int matrix1[size1][size2],matrix2[size1][size2],matrix3[size1][size2];
+				printf("\nGive me matrix 1\n");
+				insert(size1,size2, matrix1);
 				printf("Give me matrix 2\n");
-				insert(size, matrix2);
-				insert_null(size, matrix3);
-				add(size, matrix1, matrix2, matrix3);
-				print_matrix(size, matrix3);
+				insert(size1,size2, matrix2);
+				insert_null(size1,size2, matrix3);
+				add(size1,size2, matrix1, matrix2, matrix3);
+				print_matrix(size1,size2, matrix3);
 				break;
 			case 2:
-				printf("Give me matrix 1\n");
-				insert(size, matrix1);
+				printf("\nGive me the number of rows: ");
+				scanf("%i",&size1);
+				printf("\nGive me the number of columns: ");
+				scanf("%i",&size2);
+				int matrix1[size1][size2],matrix2[size1][size2],matrix3[size1][size2];
+				printf("\nGive me matrix 1\n");
+				insert(size1,size2, matrix1);
 				printf("Give me matrix 2\n");
-				insert(size, matrix2);
-				insert_null(size, matrix3);
-				substract(size, matrix1, matrix2, matrix3);
-				print_matrix(size, matrix3);
+				insert(size1,size2, matrix2);
+				insert_null(size1,size2, matrix3);
+				substract(size1,size2, matrix1, matrix2, matrix3);
+				print_matrix(size1,size2, matrix3);
 				break;
 			case 3:
-				printf("Give me matrix 1\n");
-				insert(size,matrix1);
+				printf("\nGive me the number of rows: ");
+				scanf("%i",&size1);
+				printf("\nGive me the number of columns: ");
+				scanf("%i",&size2);
+				printf("\nGive me the number of rows of the second matrix: ");
+				scanf("%i",&size3);
+				int matrix1[size1][size2],matrix2[size2][size3],matrix3[size1][size3];
+				printf("\nGive me matrix 1\n");
+				insert(size1,size2,matrix1);
 				printf("Give me matrix 2\n");
-				insert(size,matrix2);
-				insert_null(size,matrix3);
-				multiplication(size,size,size,matrix3,matrix1,matrix2);
-				print_matrix(size, matrix3);
+				insert(size2,size3,matrix2);
+				insert_null(size1,size3,matrix3);
+				multiplication(size1,size2,size3,matrix3,matrix1,matrix2);
+				print_matrix(size1,size3, matrix3);
 				break;
 			case 4:
-				printf("Give me the matrix\n");
-				insert(size,matrix1);
+				printf("\nGive me the number of rows: ");
+				scanf("%i",&size1);
+				printf("\nGive me the number of columns: ");
+				scanf("%i",&size2);
+				int matrix1[size1][size2],matrix3[size1][size2];
+				printf("\nGive me the matrix\n");
+				insert(size1,size2,matrix1);
 				printf("Give the scalar\n");
 				scanf("%i", &scalar);
-				insert_null(size,matrix3);
-				scalar_multiplication(size,matrix1,matrix3,scalar);
-				print_matrix(size, matrix3);
+				insert_null(size1,size2,matrix3);
+				scalar_multiplication(size1,size2,matrix1,matrix3,scalar);
+				print_matrix(size1,size2, matrix3);
 				break;
-			case 5:	
-
-				printf("Give me the matrix\n");
-				insert(size,matrix1);
-				result=determinant(size,matrix1);
+			case 5:
+				printf("\nGive me the dimention of the matrix: ");
+				scanf("%i",&size1);
+				int matrix1[size1][size1];
+				printf("\nGive me the matrix\n");
+				insert(size1,size1,matrix1);
+				result=determinant(size1,size1,matrix1);
 				printf("\nYour determinant is: %i\n", result);
 				break;
 			case 6:
-				printf("Give me matrix 1\n");
-				insert(size,matrix1);
-				insert_null(size,matrix2);
-				transpose(size,matrix1,matrix2);
-				print_matrix(size,matrix2);
+				printf("\nGive me the number of rows: ");
+				scanf("%i",&size1);
+				printf("\nGive me the number of columns: ");
+				scanf("%i",&size2);
+				int matrix1[size1][size2],matrix2[size2][size1];
+				printf("\nGive me matrix 1\n");
+				insert(size1,size2,matrix1);
+				insert_null(size2,size1,matrix2);
+				transpose(size1,size2,matrix1,matrix2);
+				print_matrix(size2,size1,matrix2);
 				break; 
 			case 7:
 				printf("\nATTENTION: This function only works with 3x3 matrices.");
@@ -112,29 +138,29 @@ void menu ()
 	}while(option!=0);
 }
 
-void scalar_multiplication(int size,int matrix1[size][size], int matrix_result[size][size],int scalar)
+void scalar_multiplication(int size1, int size2, int matrix1[size1][size2], int matrix_result[size1][size2],int scalar)
 {
 	int row,col;
-        for (row=0;row<size;row++)
-                for (col=0;col<size;col++)       
+        for (row=0;row<size1;row++)
+                for (col=0;col<size2;col++)       
 			matrix_result[row][col]=scalar*matrix1[row][col];
 }	
 
-void insert(int size,int matrix[size][size])
+void insert(int size1, int size2, int matrix[size1][size2])
 {
 	int row,col;
-	for (row=0;row<size;row++)
-		for (col=0;col<size;col++)
+	for (row=0;row<size1;row++)
+		for (col=0;col<size2;col++)
 		{
 			printf("\nInput value in row  %i and column  %i: ", 1+row,1+col);
 			scanf("%i",&matrix[row][col]);
 		}
 }
-void insert_null(int size,int matrix[size][size])
+void insert_null(int size1, int size2 ,int matrix[size1][size2])
 {
 	int row,col;
-	for (row=0;row<size;row++)
-		for (col=0;col<size;col++)
+	for (row=0;row<size1;row++)
+		for (col=0;col<size2;col++)
 			matrix[row][col]=0;
 }
 
@@ -172,42 +198,42 @@ int determinant(int size, int matrix[size][size])
 		return result;
 	}
 }
-void add( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size])
+void add( int size1, int size2, int matrix1[size1][size2],int matrix2[size1][size2],int matrix3[size1][size2])
 {
 	int row, col;
-	for (row=0;row<size;row++)
-		for (col=0;col<size;col++)
+	for (row=0;row<size1;row++)
+		for (col=0;col<size2;col++)
 		{
 			matrix3[row][col]=matrix1[row][col]+matrix2[row][col];
 		}
 }
 
-void substract( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size])
+void substract( int size1, int size2, int matrix1[size1][size2],int matrix2[size1][size2],int matrix3[size1][size2])
 {
 	int row, col;
-	for (row=0;row<size;row++)
-		for (col=0;col<size;col++)
+	for (row=0;row<size1;row++)
+		for (col=0;col<size2;col++)
 		{
 			matrix3[row][col]=matrix1[row][col]-matrix2[row][col];
 		}
 }
 
 
-void transpose (int size, int matrix[size][size], int transposed_matrix[size][size])
+void transpose (int size1, int size2, int matrix[size1][size2], int transposed_matrix[size2][size1])
 {
 	int row, col;
-	for (row = 0; row < size; row++)
-		for(col = 0; col < size; col++)
+	for (row = 0; row < size1; row++)
+		for(col = 0; col < size2; col++)
 			transposed_matrix[col][row] = matrix[row][col];
 }
 
-void print_matrix (int size, int matrix [size][size])
+void print_matrix (int size1, int size2, int matrix [size1][size2])
 {
 	int row,col;
 	printf("\nYour result is:\n");
-	for (row=0;row<size;row++)
+	for (row=0;row<size1;row++)
 	{    
-		for (col=0;col<size;col++)   
+		for (col=0;col<size2;col++)   
 			printf(" %i   ", matrix[row][col]);
 		printf("\n");
 	}    
