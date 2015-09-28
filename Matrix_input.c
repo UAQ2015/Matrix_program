@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-void multiplication(int size,int matrixres[size][size],int matrix1[size][size],int matrix2[size][size]);
+void multiplication(int size1, int size2, int size3, int matrixres[size1][size2],int matrix1[size2][size3],int matrix2[size1][size3]);
 int determinant(int size, int matrix[size][size]);
 void insert(int size,int matrix[size][size]);
 void insert_null(int size,int matrix[size][size]);
@@ -63,7 +63,7 @@ void menu ()
 				printf("Give me matrix 2\n");
 				insert(size,matrix2);
 				insert_null(size,matrix3);
-				multiplication(size,matrix3,matrix1,matrix2);
+				multiplication(size,size,size,matrix3,matrix1,matrix2);
 				print_matrix(size, matrix3);
 				break;
 			case 4:
@@ -138,12 +138,12 @@ void insert_null(int size,int matrix[size][size])
 			matrix[row][col]=0;
 }
 
-void multiplication(int size,int matrixres[size][size],int matrix1[size][size],int matrix2[size][size])
+void multiplication(int size1, int size2, int size3, int matrixres[size1][size2],int matrix1[size2][size3],int matrix2[size1][size3])
 {
 	int row,col,aux;
-	for(row=0;row<size;row++)
-		for(col=0;col<size;col++)
-			for(aux=0,matrixres[row][col]=0;aux<size;aux++)
+	for(row=0;row<size1;row++)
+		for(col=0;col<size3;col++)
+			for(aux=0,matrixres[row][col]=0;aux<size2;aux++)
 				matrixres[row][col]=matrixres[row][col]+matrix1[row][aux]*matrix2[aux][col];
 }
 int determinant(int size, int matrix[size][size])
