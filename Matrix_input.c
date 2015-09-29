@@ -144,19 +144,22 @@ void menu ()
 			case 7:
 				printf("\nATTENTION: This function only works with 3x3 matrices.");
 				printf("\nGive me the matrix: ");
-				insert(size, matrix1);
-				if (size != 3)
+				size1=3;
+				calloc_matrix(size1,size1,matrix1);
+				insert(size1, matrix1);
+				if (size1 != 3)
 				{
 					printf("\nSorry! I wasn't programmed to work with matrices other than 3x3 matrices :(");
 					break;
 				}
-				if (determinant(size, matrix1) == 0)
+				if (determinant(size1, matrix1) == 0)
 					printf("\nThe matrix given has no inverse matrix. The determinant is zero.");
 				else 
 				{
-					inverse_matrix(size, matrix1, matrix2);				
-					print_matrix(size, matrix2);
+					inverse_matrix(size1, matrix1, matrix2);				
+					print_matrix(size1, matrix2);
 				}
+				free_matrix(matrix1,size1);
 				break;
 			case 0:
 				break;
