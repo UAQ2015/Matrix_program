@@ -22,7 +22,7 @@ int main()
 void menu ()
 {
 	int option=9, result;
-	const int size1, size2, size3, 
+	const int size1, size2, size3; 
 	int scalar;
 	int **matrix1,**matrix2,**matrix3;
 	do
@@ -122,7 +122,7 @@ void menu ()
 				calloc_matrix(size1,size1,matrix1);
 				printf("\nGive me the matrix\n");
 				insert(size1,size1,matrix1);
-				result=determinant(size1,size1,matrix1);
+				result=determinant(size1,matrix1);
 				printf("\nYour determinant is: %i\n", result);
 				free_matrix(matrix1,size1);
 				break;
@@ -177,7 +177,7 @@ void free_matrix(int **matrix, int size1)
 		free(matrix[i]);
 	free(matrix);
 }
-void scalar_multiplication(int size1, int size2, int **matrix1, int **matrix_result,int scalar);
+void scalar_multiplication(int size1, int size2, int **matrix1, int **matrix_result,int scalar)
 {
 	int row,col;
         for (row=0;row<size1;row++)
@@ -185,7 +185,7 @@ void scalar_multiplication(int size1, int size2, int **matrix1, int **matrix_res
 			matrix_result[row][col]=scalar*matrix1[row][col];
 }	
 
-void insert(int size1, int size2, int **matrix);
+void insert(int size1, int size2, int **matrix)
 {
 	int row,col;
 	for (row=0;row<size1;row++)
@@ -195,7 +195,7 @@ void insert(int size1, int size2, int **matrix);
 			scanf("%i",&matrix[row][col]);
 		}
 }
-void insert_null(int size1, int size2 ,int **matrix);
+void insert_null(int size1, int size2 ,int **matrix)
 {
 	int row,col;
 	for (row=0;row<size1;row++)
@@ -203,7 +203,7 @@ void insert_null(int size1, int size2 ,int **matrix);
 			matrix[row][col]=0;
 }
 
-void multiplication(int size1, int size2, int size3, int **matrixres,int **matrix1,int **matrix2);
+void multiplication(int size1, int size2, int size3, int **matrixres,int **matrix1,int **matrix2)
 {
 	int row,col,aux;
 	for(row=0;row<size1;row++)
@@ -211,7 +211,7 @@ void multiplication(int size1, int size2, int size3, int **matrixres,int **matri
 			for(aux=0,matrixres[row][col]=0;aux<size2;aux++)
 				matrixres[row][col]=matrixres[row][col]+matrix1[row][aux]*matrix2[aux][col];
 }
-int determinant(int size, int **matrix);
+int determinant(int size, int **matrix)
 {
 	int result=0,i,j,h,pow;
 	if (size==1)
@@ -237,7 +237,7 @@ int determinant(int size, int **matrix);
 		return result;
 	}
 }
-void add( int size1, int size2, int **matrix1,int **matrix2,int **matrix3);
+void add( int size1, int size2, int **matrix1,int **matrix2,int **matrix3)
 {
 	int row, col;
 	for (row=0;row<size1;row++)
@@ -247,7 +247,7 @@ void add( int size1, int size2, int **matrix1,int **matrix2,int **matrix3);
 		}
 }
 
-void substract(int size1, int size2, int **matrix1,int **matrix2,int **matrix3);
+void substract(int size1, int size2, int **matrix1,int **matrix2,int **matrix3)
 {
 	int row, col;
 	for (row=0;row<size1;row++)
@@ -258,7 +258,7 @@ void substract(int size1, int size2, int **matrix1,int **matrix2,int **matrix3);
 }
 
 
-void transpose (int size1, int size2, int **matrix, int **transposed_matrix);
+void transpose (int size1, int size2, int **matrix, int **transposed_matrix)
 {
 	int row, col;
 	for (row = 0; row < size1; row++)
@@ -266,7 +266,7 @@ void transpose (int size1, int size2, int **matrix, int **transposed_matrix);
 			transposed_matrix[col][row] = matrix[row][col];
 }
 
-void print_matrix (int size1, int size2, int **matrix);
+void print_matrix (int size1, int size2, int **matrix)
 {
 	int row,col;
 	printf("\nYour result is:\n");
@@ -278,7 +278,7 @@ void print_matrix (int size1, int size2, int **matrix);
 	}    
 }
 
-void inverse_matrix (int size, int **matrix, int **inverse_matrix);
+void inverse_matrix (int size, int **matrix, int **inverse_matrix)
 {
 	int det;
 	det = (1/ determinant(size, matrix));
