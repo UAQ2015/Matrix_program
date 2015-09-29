@@ -11,6 +11,8 @@ void transpose (int size1, int size2, int matrix[size1][size2], int transposed_m
 void print_matrix (int size1, int size2, int matrix [size1][size2]);
 void menu (void);
 void insert_null(int size1, int size2 ,int matrix[size1][size2]);
+void calloc_matrix(const int size1,const int size2, int **matrix);
+void free_matrix(int **matrix,const int size1);
 int main()
 {
 	menu();	
@@ -20,7 +22,9 @@ int main()
 void menu ()
 {
 	int option=9, result;
-	int size1, size2, size3, scalar;
+	const int size1, size2, size3, 
+	int scalar;
+	int **matrix1,**matrix2,**matrix3;
 	do
 	{
 		do
@@ -41,7 +45,9 @@ void menu ()
 				scanf("%i",&size1);
 				printf("\nGive me the number of columns: ");
 				scanf("%i",&size2);
-				int matrix1[size1][size2],matrix2[size1][size2],matrix3[size1][size2];
+				calloc_matrix(size1,size2,matrix1);
+				calloc_matrix(size1,size2,matrix2);
+				calloc_matrix(size1,size2,matrix3);
 				printf("\nGive me matrix 1\n");
 				insert(size1,size2, matrix1);
 				printf("Give me matrix 2\n");
@@ -49,13 +55,18 @@ void menu ()
 				insert_null(size1,size2, matrix3);
 				add(size1,size2, matrix1, matrix2, matrix3);
 				print_matrix(size1,size2, matrix3);
+				free_matrix(matrix1,size1);
+				free_matrix(matrix2,size1);
+				free_matrix(matrix3,size1);
 				break;
 			case 2:
 				printf("\nGive me the number of rows: ");
 				scanf("%i",&size1);
 				printf("\nGive me the number of columns: ");
 				scanf("%i",&size2);
-				int matrix1[size1][size2],matrix2[size1][size2],matrix3[size1][size2];
+				calloc_matrix(size1,size2,matrix1);
+				calloc_matrix(size1,size2,matrix2);
+				calloc_matrix(size1,size2,matrix3);
 				printf("\nGive me matrix 1\n");
 				insert(size1,size2, matrix1);
 				printf("Give me matrix 2\n");
@@ -63,6 +74,9 @@ void menu ()
 				insert_null(size1,size2, matrix3);
 				substract(size1,size2, matrix1, matrix2, matrix3);
 				print_matrix(size1,size2, matrix3);
+				free_matrix(matrix1,size1);
+				free_matrix(matrix2,size1);
+				free_matrix(matrix3,size1);
 				break;
 			case 3:
 				printf("\nGive me the number of rows: ");
@@ -71,7 +85,9 @@ void menu ()
 				scanf("%i",&size2);
 				printf("\nGive me the number of rows of the second matrix: ");
 				scanf("%i",&size3);
-				int matrix1[size1][size2],matrix2[size2][size3],matrix3[size1][size3];
+				calloc_matrix(size1,size2,matrix1);
+				calloc_matrix(size2,size3,matrix2);
+				calloc_matrix(size1,size3,matrix3);
 				printf("\nGive me matrix 1\n");
 				insert(size1,size2,matrix1);
 				printf("Give me matrix 2\n");
@@ -79,13 +95,17 @@ void menu ()
 				insert_null(size1,size3,matrix3);
 				multiplication(size1,size2,size3,matrix3,matrix1,matrix2);
 				print_matrix(size1,size3, matrix3);
+				free_matrix(matrix1,size1);
+				free_matrix(matrix2,size2);
+				free_matrix(matrix3,size1);
 				break;
 			case 4:
 				printf("\nGive me the number of rows: ");
 				scanf("%i",&size1);
 				printf("\nGive me the number of columns: ");
 				scanf("%i",&size2);
-				int matrix1[size1][size2],matrix3[size1][size2];
+				calloc_matrix(size1,size2,matrix1);
+				calloc_matrix(size1,size2,matrix3);
 				printf("\nGive me the matrix\n");
 				insert(size1,size2,matrix1);
 				printf("Give the scalar\n");
@@ -93,27 +113,33 @@ void menu ()
 				insert_null(size1,size2,matrix3);
 				scalar_multiplication(size1,size2,matrix1,matrix3,scalar);
 				print_matrix(size1,size2, matrix3);
+				free_matrix(matrix1,size1);
+				free_matrix(matrix3,size1);
 				break;
 			case 5:
 				printf("\nGive me the dimention of the matrix: ");
 				scanf("%i",&size1);
-				int matrix1[size1][size1];
+				calloc_matrix(size1,size1,matrix1);
 				printf("\nGive me the matrix\n");
 				insert(size1,size1,matrix1);
 				result=determinant(size1,size1,matrix1);
 				printf("\nYour determinant is: %i\n", result);
+				free_matrix(matrix1,size1);
 				break;
 			case 6:
 				printf("\nGive me the number of rows: ");
 				scanf("%i",&size1);
 				printf("\nGive me the number of columns: ");
 				scanf("%i",&size2);
-				int matrix1[size1][size2],matrix2[size2][size1];
+				calloc_matrix(size1,size2,matrix1);
+				calloc_matrix(size2,size1,matrix2);
 				printf("\nGive me matrix 1\n");
 				insert(size1,size2,matrix1);
 				insert_null(size2,size1,matrix2);
 				transpose(size1,size2,matrix1,matrix2);
 				print_matrix(size2,size1,matrix2);
+				free_matrix(matrix1,size1);
+				free_matrix(matrix2,size2);
 				break; 
 			case 7:
 				printf("\nATTENTION: This function only works with 3x3 matrices.");
@@ -137,7 +163,20 @@ void menu ()
 		} 
 	}while(option!=0);
 }
-
+void calloc_matrix(const int size1,const int size2, int **matrix)
+{
+	int i=0;
+	matrix=calloc(sizeof(int *),size1);
+	for(i=0; i<n; i++)
+		matrix[i]=calloc(sizeof(int),size2);
+}
+void free_matrix(int **matrix,const int size1)
+{
+	int i=0;
+	for(i=0; i<n; i++)
+		free(matrix[i]);
+	free(matrix);
+}
 void scalar_multiplication(int size1, int size2, int matrix1[size1][size2], int matrix_result[size1][size2],int scalar)
 {
 	int row,col;
