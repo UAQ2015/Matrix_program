@@ -22,7 +22,7 @@ int main()
 void menu ()
 {
 	int option=9, result;
-	const int size1, size2, size3; 
+	int size1, size2, size3; 
 	int scalar;
 	int **matrix1,**matrix2,**matrix3;
 	do
@@ -146,7 +146,7 @@ void menu ()
 				printf("\nGive me the matrix: ");
 				size1=3;
 				calloc_matrix(size1,size1,matrix1);
-				insert(size1, matrix1);
+				insert(size1,size1,matrix1);
 				if (size1 != 3)
 				{
 					printf("\nSorry! I wasn't programmed to work with matrices other than 3x3 matrices :(");
@@ -157,7 +157,7 @@ void menu ()
 				else 
 				{
 					inverse_matrix(size1, matrix1, matrix2);				
-					print_matrix(size1, matrix2);
+					print_matrix(size1,size1, matrix2);
 				}
 				free_matrix(matrix1,size1);
 				break;
@@ -170,13 +170,13 @@ void calloc_matrix(int size1, int size2, int **matrix)
 {
 	int i=0;
 	matrix=calloc(sizeof(int *),size1);
-	for(i=0; i<n; i++)
+	for(i=0; i<size1; i++)
 		matrix[i]=calloc(sizeof(int),size2);
 }
 void free_matrix(int **matrix, int size1)
 {
 	int i=0;
-	for(i=0; i<n; i++)
+	for(i=0; i<size1; i++)
 		free(matrix[i]);
 	free(matrix);
 }
