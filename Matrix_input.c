@@ -142,16 +142,10 @@ void menu ()
 				free_matrix(matrix2,size2);
 				break; 
 			case 7:
-				printf("\nATTENTION: This function only works with 3x3 matrices.");
+				printf("\nGive me the size: ");
+				scanf("%i",&size1);
 				printf("\nGive me the matrix: ");
-				size1=3;
-				matrix1=calloc_matrix(size1,size1);
-				insert(size1,size1,matrix1);
-				if (size1 != 3)
-				{
-					printf("\nSorry! I wasn't programmed to work with matrices other than 3x3 matrices :(");
-					break;
-				}
+				insert(size1,size1, matrix1);
 				if (determinant(size1, matrix1) == 0)
 					printf("\nThe matrix given has no inverse matrix. The determinant is zero.");
 				else 
@@ -218,7 +212,9 @@ void multiplication(int size1, int size2, int size3, int **matrixres,int **matri
 }
 int determinant(int size, int **matrix)
 {
-	int result=0,i,j,h,pow;
+	int i,j,h;
+	int pow;
+	int result =0;
 	if (size==1)
 		return matrix[0][0];
 	else
@@ -287,15 +283,45 @@ void print_matrix (int size1, int size2, int **matrix)
 
 void inverse_matrix (int size, int **matrix, int **inverse_matrix)
 {
-	int det;
+	int **cofactor_matrix;
+	cofactor_matrix=calloc_matrix(size,size);
+	int ** submatrix;
+	submatrix=calloc_matrix(size-1,size-1);
+	int det, row, col, i, j;
+	int pow = -1;
 	det = (1/ determinant(size, matrix));
-	inverse_matrix [0][0] = det * ((matrix [1][1] * matrix [2][2]) - (matrix [1][2] * matrix [2][1]));
-	inverse_matrix [0][1] = det * ((matrix [2][1] * matrix [0][2]) - (matrix [2][2] * matrix [0][1]));	
-	inverse_matrix [0][2] = det * ((matrix [0][1] * matrix [1][2]) - (matrix [0][2] * matrix [1][1]));	
-	inverse_matrix [1][0] = det * ((matrix [1][2] * matrix [2][0]) - (matrix [1][0] * matrix [2][2]));	
-	inverse_matrix [1][1] = det * ((matrix [2][2] * matrix [0][0]) - (matrix [2][0] * matrix [0][2]));	
-	inverse_matrix [1][2] = det * ((matrix [0][2] * matrix [1][0]) - (matrix [0][0] * matrix [1][2]));	
-	inverse_matrix [2][0] = det * ((matrix [1][0] * matrix [2][1]) - (matrix [1][1] * matrix [2][0]));	
-	inverse_matrix [2][1] = det * ((matrix [2][0] * matrix [0][1]) - (matrix [2][1] * matrix [0][0]));	
-	inverse_matrix [2][2] = det * ((matrix [0][0] * matrix [1][1]) - (matrix [0][1] * matrix [1][0]));	
+	for (row = 0; row < size; row++)
+	{
+		for (col = 0; col < size; col++)
+		{
+			for (i = 0; i < size; i++)
+			{	for(j = 0; j < size; j++)
+				{
+					if (i < row)
+					{
+						if (j < col)
+							submatrix[i][j] = matrix[i][j];
+						if (j > col)
+							submatrix[i][j - 1] = matrix[i][j];
+					}
+					if (i > row)
+					{
+						if (j < col)
+							submatrix[i - 1][j] = matrix[i][j];
+						if (j > col)
+							submatrix[i - 1][j - 1] = matrix[i][j];
+					}
+				}
+			}
+			pow = pow * (-1);
+			cofactor_matrix[col][row] = pow * (determinant(size - 1, submatrix));
+		}
+	}
+	for (row = 0; row < size; row++)
+		for (col = 0; col < size; col++)
+			inverse_matrix[row][col] = det * cofactor_matrix[col][row];
+	free_matrix(cofactor_matrix, size);
+	free_matrix(submatrix, size-1);
+	
+			
 }	
