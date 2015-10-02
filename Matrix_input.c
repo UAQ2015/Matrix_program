@@ -144,6 +144,7 @@ void menu ()
 			case 7:
 				printf("\nGive me the size: ");
 				scanf("%i",&size1);
+				matrix1=calloc_matrix(size1,size1);
 				printf("\nGive me the matrix: ");
 				insert(size1,size1, matrix1);
 				if (determinant(size1, matrix1) == 0)
@@ -284,9 +285,9 @@ void print_matrix (int size1, int size2, int **matrix)
 void inverse_matrix (int size, int **matrix, int **inverse_matrix)
 {
 	int **cofactor_matrix;
-	cofactor_matrix=calloc_matrix(size,size);
 	int ** submatrix;
 	submatrix=calloc_matrix(size-1,size-1);
+	cofactor_matrix=calloc_matrix(size,size);
 	int det, row, col, i, j;
 	int pow = -1;
 	det = (1/ determinant(size, matrix));
