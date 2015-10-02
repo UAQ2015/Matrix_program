@@ -223,7 +223,8 @@ int determinant(int size, int **matrix)
 		return matrix[0][0];
 	else
 	{
-		int submatrix[size-1][size-1];
+		int **submatrix;
+		submatrix=calloc_matrix(size-1,size-1);
 		for(i=0;i<size;i++)
 		{
 			for(j=1;j<size;j++)
@@ -239,6 +240,7 @@ int determinant(int size, int **matrix)
 				pow=pow*(-1);
 			result=matrix[0][i]*determinant(size-1,submatrix)*pow+result;	
 		}
+		free_matrix(submatrix,size-1);
 		return result;
 	}
 }
