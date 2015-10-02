@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <math.h>
-void multiplication(int size1, int size2, int size3, int matrixres[size1][size2],int matrix1[size2][size3],int matrix2[size1][size3]);
+void multiplication(int size1, int size2, int size3, int matrixres[size1][size2], int matrix1[size2][size3], int matrix2[size1][size3]);
 int determinant(int size, int matrix[size][size]);
-void insert(int size,int matrix[size][size]);
-void insert_null(int size,int matrix[size][size]);
-void add( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size]);
-void substract( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size]);
+void insert(int size, int matrix[size][size]);
+void insert_null(int size, int matrix[size][size]);
+void add( int size, int matrix1[size][size], int matrix2[size][size], int matrix3[size][size]);
+void substract( int size, int matrix1[size][size], int matrix2[size][size], int matrix3[size][size]);
 void transpose (int size, int matrix[size][size], int transposed_matrix[size][size]);
 void print_matrix (int size, int matrix [size][size]);
 void inverse_matrix (int size, int matrix[size][size], int inverse_matrix[size][size]);
-void scalar_multiplication(int size,int matrix1[size][size],int matrix_result[size][size],int scalar);
+void scalar_multiplication(int size, int matrix1[size][size], int matrix_result[size][size],int scalar);
 void menu (void);
 int main()
 {
@@ -103,7 +103,7 @@ void menu ()
 				else 
 				{
 					inverse_matrix(size, matrix1, matrix2);				
-					print_matrix(size, matrix2);
+				//	print_matrix(size, matrix2);
 				}
 				break;
 			case 0:
@@ -112,7 +112,7 @@ void menu ()
 	}while(option!=0);
 }
 
-void scalar_multiplication(int size,int matrix1[size][size], int matrix_result[size][size],int scalar)
+void scalar_multiplication(int size, int matrix1[size][size], int matrix_result[size][size],int scalar)
 {
 	int row,col;
         for (row=0;row<size;row++)
@@ -120,7 +120,7 @@ void scalar_multiplication(int size,int matrix1[size][size], int matrix_result[s
 			matrix_result[row][col]=scalar*matrix1[row][col];
 }	
 
-void insert(int size,int matrix[size][size])
+void insert(int size, int matrix[size][size])
 {
 	int row,col;
 	for (row=0;row<size;row++)
@@ -130,7 +130,7 @@ void insert(int size,int matrix[size][size])
 			scanf("%i",&matrix[row][col]);
 		}
 }
-void insert_null(int size,int matrix[size][size])
+void insert_null(int size, int matrix[size][size])
 {
 	int row,col;
 	for (row=0;row<size;row++)
@@ -138,7 +138,7 @@ void insert_null(int size,int matrix[size][size])
 			matrix[row][col]=0;
 }
 
-void multiplication(int size1, int size2, int size3, int matrixres[size1][size2],int matrix1[size2][size3],int matrix2[size1][size3])
+void multiplication(int size1, int size2, int size3, int matrixres[size1][size2], int matrix1[size2][size3], int matrix2[size1][size3])
 {
 	int row,col,aux;
 	for(row=0;row<size1;row++)
@@ -148,7 +148,9 @@ void multiplication(int size1, int size2, int size3, int matrixres[size1][size2]
 }
 int determinant(int size, int matrix[size][size])
 {
-	int result=0,i,j,h,pow;
+	int i,j,h;
+	int pow;
+	int result =0;
 	if (size==1)
 		return matrix[0][0];
 	else
@@ -172,7 +174,7 @@ int determinant(int size, int matrix[size][size])
 		return result;
 	}
 }
-void add( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size])
+void add( int size, int matrix1[size][size], int matrix2[size][size], int matrix3[size][size])
 {
 	int row, col;
 	for (row=0;row<size;row++)
@@ -182,7 +184,7 @@ void add( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[
 		}
 }
 
-void substract( int size, int matrix1[size][size],int matrix2[size][size],int matrix3[size][size])
+void substract( int size, int matrix1[size][size], int matrix2[size][size], int matrix3[size][size])
 {
 	int row, col;
 	for (row=0;row<size;row++)
@@ -215,15 +217,40 @@ void print_matrix (int size, int matrix [size][size])
 
 void inverse_matrix (int size, int matrix [size][size], int inverse_matrix [size][size])
 {
-	int det;
+	int cofactor_matrix[size][size];
+	int submatrix[size-1][size-1];
+	int det, row, col, i, j;
+	int pow = -1;
 	det = (1/ determinant(size, matrix));
-	inverse_matrix [0][0] = det * ((matrix [1][1] * matrix [2][2]) - (matrix [1][2] * matrix [2][1]));
-	inverse_matrix [0][1] = det * ((matrix [2][1] * matrix [0][2]) - (matrix [2][2] * matrix [0][1]));	
-	inverse_matrix [0][2] = det * ((matrix [0][1] * matrix [1][2]) - (matrix [0][2] * matrix [1][1]));	
-	inverse_matrix [1][0] = det * ((matrix [1][2] * matrix [2][0]) - (matrix [1][0] * matrix [2][2]));	
-	inverse_matrix [1][1] = det * ((matrix [2][2] * matrix [0][0]) - (matrix [2][0] * matrix [0][2]));	
-	inverse_matrix [1][2] = det * ((matrix [0][2] * matrix [1][0]) - (matrix [0][0] * matrix [1][2]));	
-	inverse_matrix [2][0] = det * ((matrix [1][0] * matrix [2][1]) - (matrix [1][1] * matrix [2][0]));	
-	inverse_matrix [2][1] = det * ((matrix [2][0] * matrix [0][1]) - (matrix [2][1] * matrix [0][0]));	
-	inverse_matrix [2][2] = det * ((matrix [0][0] * matrix [1][1]) - (matrix [0][1] * matrix [1][0]));	
+	for (row = 0; row < size; row++)
+	{
+		for (col = 0; col < size; col++)
+		{
+			for (i = 0; i < size; i++)
+			{	for(j = 0; j < size; j++)
+				{
+					if (i < row)
+					{
+						if (j < col)
+							submatrix[i][j] = matrix[i][j];
+						if (j > col)
+							submatrix[i][j - 1] = matrix[i][j];
+					}
+					if (i > row)
+					{
+						if (j < col)
+							submatrix[i - 1][j] = matrix[i][j];
+						if (j > col)
+							submatrix[i - 1][j - 1] = matrix[i][j];
+					}
+				}
+			}
+			pow = pow * (-1);
+			cofactor_matrix[col][row] = pow * (determinant(size - 1, submatrix));
+		}
+	}
+//	for (row = 0; row < size; row++)
+//		for (col = 0; col < size; col++)
+//			inverse_matrix[row][col] = det * cofactor_matrix[col][row]
+	print_matrix(size, cofactor_matrix);
 }	
