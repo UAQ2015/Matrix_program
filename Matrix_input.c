@@ -90,14 +90,8 @@ void menu ()
 				print_matrix(size,matrix2);
 				break; 
 			case 7:
-				printf("\nATTENTION: This function only works with 3x3 matrices.");
 				printf("\nGive me the matrix: ");
 				insert(size, matrix1);
-				if (size != 3)
-				{
-					printf("\nSorry! I wasn't programmed to work with matrices other than 3x3 matrices :(");
-					break;
-				}
 				if (determinant(size, matrix1) == 0)
 					printf("\nThe matrix given has no inverse matrix. The determinant is zero.");
 				else 
