@@ -103,7 +103,7 @@ void menu ()
 				else 
 				{
 					inverse_matrix(size, matrix1, matrix2);				
-				//	print_matrix(size, matrix2);
+					print_matrix(size, matrix2);
 				}
 				break;
 			case 0:
@@ -249,8 +249,7 @@ void inverse_matrix (int size, int matrix [size][size], int inverse_matrix [size
 			cofactor_matrix[col][row] = pow * (determinant(size - 1, submatrix));
 		}
 	}
-//	for (row = 0; row < size; row++)
-//		for (col = 0; col < size; col++)
-//			inverse_matrix[row][col] = det * cofactor_matrix[col][row]
-	print_matrix(size, cofactor_matrix);
+	for (row = 0; row < size; row++)
+		for (col = 0; col < size; col++)
+			inverse_matrix[row][col] = det * cofactor_matrix[col][row];
 }	
