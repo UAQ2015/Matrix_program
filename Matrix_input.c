@@ -322,6 +322,4 @@ void inverse_matrix (int size, int **matrix, int **inverse_matrix)
 			inverse_matrix[row][col] = det * cofactor_matrix[col][row];
 	free_matrix(cofactor_matrix, size);
 	free_matrix(submatrix, size-1);
-	
-			
 }	
