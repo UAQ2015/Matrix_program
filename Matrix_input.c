@@ -145,6 +145,7 @@ void menu ()
 				printf("\nGive me the size: ");
 				scanf("%i",&size1);
 				matrix1=calloc_matrix(size1,size1);
+				matrix2=calloc_matrix(size1,size1);
 				printf("\nGive me the matrix: ");
 				insert(size1,size1, matrix1);
 				if (determinant(size1, matrix1) == 0)
@@ -155,6 +156,7 @@ void menu ()
 					print_matrix(size1,size1, matrix2);
 				}
 				free_matrix(matrix1,size1);
+				free_matrix(matrix2,size1);
 				break;
 			case 0:
 				break;
