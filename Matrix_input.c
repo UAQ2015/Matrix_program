@@ -13,6 +13,7 @@ void menu (void);
 void insert_null(int size1, int size2 ,int **matrix);
 int **calloc_matrix( int size1, int size2);
 void free_matrix(int **matrix, int size1);
+void print_file (int size1, int size2, int **matrix); 
 int main()
 {
 	menu();	
@@ -21,7 +22,7 @@ int main()
 
 void menu ()
 {
-	int option=9, result;
+	int option=9, result, print_mode;
 	int size1, size2, size3; 
 	int scalar;
 	int **matrix1,**matrix2,**matrix3;
@@ -42,7 +43,7 @@ void menu ()
 		{
 			case 1:
 				printf("\nGive me the number of rows: ");
-				scanf("%i",&size1);
+				scanf("%i",&size1);				printf("\nGive me the number of columns: ");
 				printf("\nGive me the number of columns: ");
 				scanf("%i",&size2);
 				matrix1=calloc_matrix(size1,size2);
@@ -54,7 +55,12 @@ void menu ()
 				insert(size1,size2, matrix2);
 				insert_null(size1,size2, matrix3);
 				add(size1,size2, matrix1, matrix2, matrix3);
-				print_matrix(size1,size2, matrix3);
+				printf("if you want to create a file with the answer press 1");
+				scanf("%i", &print_mode);
+				if(print_mode==1)
+					print_file (size1, size2, matrix3);
+				else
+					print_matrix(size1,size2, matrix3);
 				free_matrix(matrix1,size1);
 				free_matrix(matrix2,size1);
 				free_matrix(matrix3,size1);
@@ -283,6 +289,24 @@ void print_matrix (int size1, int size2, int **matrix)
 			printf(" %i   ", matrix[row][col]);
 		printf("\n");
 	}    
+}
+
+void print_file (int size1, int size2, int **matrix)
+{
+        int row,col;
+	char name [100];
+	FILE *pfile;
+	printf("\nGive me the direcction and name of the file\n");
+	scanf("%s", name);
+	pfile=fopen(name,"w");
+        fprintf(pfile, "Your result is:\n");
+        for (row=0;row<size1;row++)
+        {
+                for (col=0;col<size2;col++)
+                        fprintf(pfile," %i   ", matrix[row][col]);
+                fprintf(pfile,"\n");
+        }
+	fclose(pfile);
 }
 
 void inverse_matrix (int size, int **matrix, int **inverse_matrix)
