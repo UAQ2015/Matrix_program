@@ -79,7 +79,12 @@ void menu ()
 				insert(size1,size2, matrix2);
 				insert_null(size1,size2, matrix3);
 				substract(size1,size2, matrix1, matrix2, matrix3);
-				print_matrix(size1,size2, matrix3);
+				printf("if you want to create a file with the answer press 1");
+                                scanf("%i", &print_mode);
+                                if(print_mode==1)
+                                        print_file (size1, size2, matrix3);
+                                else
+                                        print_matrix(size1,size2, matrix3);
 				free_matrix(matrix1,size1);
 				free_matrix(matrix2,size1);
 				free_matrix(matrix3,size1);
@@ -100,7 +105,12 @@ void menu ()
 				insert(size2,size3,matrix2);
 				insert_null(size1,size3,matrix3);
 				multiplication(size1,size2,size3,matrix3,matrix1,matrix2);
-				print_matrix(size1,size3, matrix3);
+				printf("if you want to create a file with the answer press 1");
+                                scanf("%i", &print_mode);
+                                if(print_mode==1)
+                                        print_file (size1, size2, matrix3);
+                                else
+                                        print_matrix(size1,size2, matrix3);
 				free_matrix(matrix1,size1);
 				free_matrix(matrix2,size2);
 				free_matrix(matrix3,size1);
@@ -118,7 +128,13 @@ void menu ()
 				scanf("%i", &scalar);
 				insert_null(size1,size2,matrix3);
 				scalar_multiplication(size1,size2,matrix1,matrix3,scalar);
-				print_matrix(size1,size2, matrix3);
+				printf("if you want to create a file with the answer press 1");
+                                scanf("%i", &print_mode); 
+                                if(print_mode==1)
+                                        print_file (size1, size2, matrix3);
+                                else
+                                        print_matrix(size1,size2, matrix3);
+
 				free_matrix(matrix1,size1);
 				free_matrix(matrix3,size1);
 				break;
@@ -129,7 +145,13 @@ void menu ()
 				printf("\nGive me the matrix\n");
 				insert(size1,size1,matrix1);
 				result=determinant(size1,matrix1);
-				printf("\nYour determinant is: %i\n", result);
+				printf("if you want to create a file with the answer press 1");
+                                scanf("%i", &print_mode); 
+                                if(print_mode==1)
+                                        print_file (size1, size2, matrix3);
+                                else
+                                        print_matrix(size1,size2, matrix3);
+
 				free_matrix(matrix1,size1);
 				break;
 			case 6:
@@ -143,7 +165,13 @@ void menu ()
 				insert(size1,size2,matrix1);
 				insert_null(size2,size1,matrix2);
 				transpose(size1,size2,matrix1,matrix2);
-				print_matrix(size2,size1,matrix2);
+				printf("if you want to create a file with the answer press 1");
+                                scanf("%i", &print_mode); 
+                                if(print_mode==1)
+                                        print_file (size1, size2, matrix3);
+                                else
+                                        print_matrix(size1,size2, matrix3);
+
 				free_matrix(matrix1,size1);
 				free_matrix(matrix2,size2);
 				break; 
@@ -163,7 +191,13 @@ void menu ()
 				else 
 				{
 					inverse_matrix(size1, matrix1, matrix2);				
-					print_matrix(size1,size1, matrix2);
+					printf("if you want to create a file with the answer press 1");
+                               		 scanf("%i", &print_mode); 
+                                	if(print_mode==1)
+                                        	print_file (size1, size2, matrix3);
+                                	else
+                                        	print_matrix(size1,size2, matrix3);
+
 				}
 				free_matrix(matrix1,size1);
 				break;
