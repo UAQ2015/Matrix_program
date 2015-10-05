@@ -55,7 +55,7 @@ void menu ()
 				insert(size1,size2, matrix2);
 				insert_null(size1,size2, matrix3);
 				add(size1,size2, matrix1, matrix2, matrix3);
-				printf("if you want to create a file with the answer press 1");
+				printf("if you want to create a file with the answer press 1\n");
 				scanf("%i", &print_mode);
 				if(print_mode==1)
 					print_file (size1, size2, matrix3);
@@ -79,7 +79,7 @@ void menu ()
 				insert(size1,size2, matrix2);
 				insert_null(size1,size2, matrix3);
 				substract(size1,size2, matrix1, matrix2, matrix3);
-				printf("if you want to create a file with the answer press 1");
+				printf("if you want to create a file with the answer press 1\n");
                                 scanf("%i", &print_mode);
                                 if(print_mode==1)
                                         print_file (size1, size2, matrix3);
@@ -105,7 +105,7 @@ void menu ()
 				insert(size2,size3,matrix2);
 				insert_null(size1,size3,matrix3);
 				multiplication(size1,size2,size3,matrix3,matrix1,matrix2);
-				printf("if you want to create a file with the answer press 1");
+				printf("if you want to create a file with the answer press 1\n");
                                 scanf("%i", &print_mode);
                                 if(print_mode==1)
                                         print_file (size1, size2, matrix3);
@@ -128,7 +128,7 @@ void menu ()
 				scanf("%i", &scalar);
 				insert_null(size1,size2,matrix3);
 				scalar_multiplication(size1,size2,matrix1,matrix3,scalar);
-				printf("if you want to create a file with the answer press 1");
+				printf("if you want to create a file with the answer press 1\n");
                                 scanf("%i", &print_mode); 
                                 if(print_mode==1)
                                         print_file (size1, size2, matrix3);
@@ -145,7 +145,7 @@ void menu ()
 				printf("\nGive me the matrix\n");
 				insert(size1,size1,matrix1);
 				result=determinant(size1,matrix1);
-				printf("if you want to create a file with the answer press 1");
+				printf("if you want to create a file with the answer press 1\n");
                                 scanf("%i", &print_mode); 
                                 if(print_mode==1)
                                         print_file (size1, size2, matrix3);
@@ -165,7 +165,7 @@ void menu ()
 				insert(size1,size2,matrix1);
 				insert_null(size2,size1,matrix2);
 				transpose(size1,size2,matrix1,matrix2);
-				printf("if you want to create a file with the answer press 1");
+				printf("if you want to create a file with the answer press 1\n");
                                 scanf("%i", &print_mode); 
                                 if(print_mode==1)
                                         print_file (size1, size2, matrix3);
@@ -191,12 +191,12 @@ void menu ()
 				else 
 				{
 					inverse_matrix(size1, matrix1, matrix2);				
-					printf("if you want to create a file with the answer press 1");
+					printf("if you want to create a file with the answer press 1\n");
                                		 scanf("%i", &print_mode); 
                                 	if(print_mode==1)
-                                        	print_file (size1, size2, matrix3);
+                                        	print_file (size1, size1, matrix2);
                                 	else
-                                        	print_matrix(size1,size2, matrix3);
+                                        	print_matrix(size1,size1, matrix2);
 
 				}
 				free_matrix(matrix1,size1);
