@@ -349,7 +349,7 @@ void inverse_matrix (int size, int **matrix, int **inverse_matrix)
 	submatrix=calloc_matrix(size-1,size-1);
 	cofactor_matrix=calloc_matrix(size,size);
 	int det, row, col, i, j;
-	int pow = -1;
+	int pow , exp;
 	det = (1/ determinant(size, matrix));
 	for (row = 0; row < size; row++)
 	{
@@ -374,13 +374,17 @@ void inverse_matrix (int size, int **matrix, int **inverse_matrix)
 					}
 				}
 			}
-			pow = pow * (-1);
+			exp = row + col;
+			if ((exp%2)== 0)
+			pow = 1;
+			if ((exp%2)==1)
+			pow = -1;
 			cofactor_matrix[col][row] = pow * (determinant(size - 1, submatrix));
 		}
 	}
 	for (row = 0; row < size; row++)
 		for (col = 0; col < size; col++)
-			inverse_matrix[row][col] = det * cofactor_matrix[col][row];
+			inverse_matrix[row][col] = det * cofactor_matrix[row][col];
 	free_matrix(cofactor_matrix, size);
 	free_matrix(submatrix, size-1);
 }	
