@@ -108,9 +108,9 @@ void menu ()
 				printf("if you want to create a file with the answer press 1\n");
                                 scanf("%i", &print_mode);
                                 if(print_mode==1)
-                                        print_file (size1, size2, matrix3);
+                                        print_file (size1, size3, matrix3);
                                 else
-                                        print_matrix(size1,size2, matrix3);
+                                        print_matrix(size1,size3, matrix3);
 				free_matrix(matrix1,size1);
 				free_matrix(matrix2,size2);
 				free_matrix(matrix3,size1);
