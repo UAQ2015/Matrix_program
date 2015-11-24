@@ -14,20 +14,10 @@ void menu ()
 	int option=9, print_mode;
 	int _size1, _size2, _size3;
 	float scalar,result;
-	Matrix matrix1;
-	Matrix matrix2;
-	Matrix matrix3;
-
-	matrix1.Resize(2,2);
-	matrix1.insert();
-	matrix1.print_matrix();
-	Matrix b(2,2);
-	cout<< "Pointer to matrix "<<b.matrix1<< endl;
-	b.copy(matrix1.add(Matrix::Identity(2)));
-	cout<< "Pointer to matrix "<<b.matrix1<< endl;
-	b.print_matrix();
-
-/*	do
+	Matrix matrix1(1,1);
+	Matrix matrix2(1,1);
+	Matrix matrix3(1,1);
+	do
 	{
 		do
 		{
@@ -47,9 +37,6 @@ void menu ()
 				cin>>_size1;
 				cout<<"\nGive me the number of columns: ";
 				cin>>_size2;
-//				matrix1=new Matrix(_size1,_size2);
-//				matrix2=new Matrix(_size1,_size2);
-//				matrix3=new Matrix(_size1,_size2);
 				matrix1.Resize(_size1, _size2);
 				matrix2.Resize(_size1, _size2);
 				matrix3.Resize(_size1, _size2);
@@ -58,7 +45,7 @@ void menu ()
 				cout<<"Give me matrix 2\n";
 				matrix2.insert();
 				matrix3.insert_null();
-				matrix3=matrix1.add(matrix2);
+				matrix3.copy(matrix1.add(matrix2));
 				cout<<"if you want to create a file with the answer press 1\n";
 				cin>>print_mode;
 				if(print_mode==1)
@@ -71,9 +58,6 @@ void menu ()
 				cin>>_size1;
 				cout<<"\nGive me the number of columns: ";
 				cin>>_size2;
-//				matrix1=new Matrix(_size1,_size2);
-//				matrix2=new Matrix(_size1,_size2);
-//				matrix3=new Matrix(_size1,_size2);
 				matrix1.Resize(_size1, _size2);
 				matrix2.Resize(_size1, _size2);
 				matrix3.Resize(_size1, _size2);
@@ -82,7 +66,7 @@ void menu ()
 				cout<<"Give me matrix 2\n";
 				matrix2.insert();
 				matrix3.insert_null();
-				matrix3=matrix1.substract(matrix2);
+				matrix3.copy(matrix1.substract(matrix2));
 				cout<<"if you want to create a file with the answer press 1\n";
                 cin>>print_mode;
                 if(print_mode==1)
@@ -97,19 +81,15 @@ void menu ()
 				cin>>_size2;
 				cout<<"\nGive me the number of rows of the second matrix: ";
 				cin>>_size3;
-//				matrix1=new Matrix(_size1,_size2);
-//				matrix2=new Matrix(_size2,_size3);
-//				matrix3=new Matrix(_size1,_size3);
 				matrix1.Resize(_size1, _size2);
 				matrix2.Resize(_size2, _size3);
 				matrix3.Resize(_size1, _size3);
-
 				cout<<"\nGive me matrix 1\n";
 				matrix1.insert();
 				cout<<"Give me matrix 2\n";
 				matrix2.insert();
 				matrix3.insert_null();
-				matrix3=matrix1.multiplication(matrix2);
+				matrix3.copy(matrix1.multiplication(matrix2));
 				cout<<"if you want to create a file with the answer press 1\n";
                                 cin>>print_mode;
                                 if(print_mode==1)
@@ -122,17 +102,14 @@ void menu ()
 				cin>>_size1;
 				cout<<"\nGive me the number of columns: ";
 				cin>>_size2;
-//				matrix1=new Matrix(_size1,_size2);
-//				matrix3=new Matrix(_size1,_size2);
 				matrix1.Resize(_size1, _size2);
 				matrix3.Resize(_size1, _size2);
-
 				cout<<"\nGive me the matrix\n";
 				matrix1.insert();
 				cout<<"Give the scalar\n";
 				cin>>scalar;
 				matrix3.insert_null();
-				matrix3=matrix1.scalar_multiplication(scalar);
+				matrix3.copy(matrix1.scalar_multiplication(scalar));
 				cout<<"if you want to create a file with the answer press 1\n";
                                 cin>>print_mode;
                                 if(print_mode==1)
@@ -143,9 +120,7 @@ void menu ()
 			case 5:
 				cout<<"\nGive me the dimention of the matrix: ";
 				cin>>_size1;
-//				matrix1=new Matrix(_size1,_size1);
 				matrix1.Resize(_size1, _size1);
-
 				cout<<"\nGive me the matrix\n";
 				matrix1.insert();
 				result=matrix1.determinant();
@@ -156,15 +131,12 @@ void menu ()
 				cin>>_size1;
 				cout<<"\nGive me the number of columns: ";
 				cin>>_size2;
-//				matrix1=new Matrix(_size1,_size2);
-//				matrix2=new Matrix_size2,_size1);
 				matrix1.Resize(_size1, _size2);
 				matrix2.Resize(_size2, _size1);
-
 				cout<<"\nGive me matrix 1\n";
 				matrix1.insert();
 				matrix2.insert_null();
-				matrix2=matrix1.transpose();
+				matrix2.copy(matrix1.transpose());
 				cout<<"if you want to create a file with the answer press 1\n";
                                 cin>>print_mode;
                                 if(print_mode==1)
@@ -176,18 +148,15 @@ void menu ()
 			case 7: // Inverse
 				cout<<"\nGive me the size: ";
 				cin>>_size1;
-//                matrix1=new Matrix(_size1,_size1);
-//				matrix2=new Matrix(_size1,_size1);
 				matrix1.Resize(_size1, _size1);
 				matrix2.Resize(_size1, _size1);
-
 				cout<<"\nGive me the matrix: ";
 				matrix1.insert();
 				if (matrix1.determinant() == 0)
 					cout<<"\nThe matrix given has no inverse matrix. The determinant is zero.";
 				else
 				{
-					matrix2=matrix1.inverse_matrix();
+					matrix2.copy(matrix1.inverse_matrix());
 					cout<<"if you want to create a file with the answer press 1\n";
                     cin>>print_mode;
                     if(print_mode==1)
@@ -201,5 +170,4 @@ void menu ()
 				break;
 		}
 	}while(option!=0);
-/* */
 }

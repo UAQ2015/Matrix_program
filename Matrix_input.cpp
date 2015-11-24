@@ -214,9 +214,9 @@ void Matrix::Resize(int _size1, int _size2) {
 
 	size1=_size1;
 	size2=_size2;
-	matrix1=new float*[size1];
-	for(i=0; i<size1; i++)
-		matrix1[i]=new float[size2];
+	matrix1=new float*[_size1];
+	for(i=0; i<_size1; i++)
+		matrix1[i]=new float[_size2];
 
 }
 
