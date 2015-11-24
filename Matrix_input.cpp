@@ -1,6 +1,17 @@
 #include "Matrix_input.h"
 #include <iostream>
 
+Matrix::Matrix()
+{
+	size1=1;
+	size2=1;
+	int i=0;
+	matrix1=new float*[size1];
+	for(i=0; i<size1; i++)
+		matrix1[i]=new float[size2];
+}
+
+
 Matrix::Matrix(int _size1, int _size2)
 {
     size1=_size1;
@@ -191,4 +202,39 @@ Matrix Matrix::inverse_matrix ()
 		for (col = 0; col < size1; col++)
 			Inverse_matrix.matrix1[row][col] = det * cofactor_matrix.matrix1[row][col];
     return Inverse_matrix;
+}
+
+void Matrix::Resize(int _size1, int _size2) {
+	int i=0;
+	for(i=0; i<size1; i++)
+		delete(matrix1[i]);
+	delete(matrix1);
+	matrix1=NULL;
+
+
+	size1=_size1;
+	size2=_size2;
+	matrix1=new float*[size1];
+	for(i=0; i<size1; i++)
+		matrix1[i]=new float[size2];
+
+}
+
+Matrix Matrix::Identity(int s) {
+	Matrix temp(s,s);
+	temp.insert_null();
+	for(int i=0;i<s;i++)
+		temp.matrix1[i][i]=1;
+
+	return temp;
+}
+
+void Matrix::copy(Matrix matrix) {
+	Resize(matrix.size1, matrix.size2);
+
+	for (int row=0;row<size1;row++)
+		for (int col=0;col<size2;col++)
+		{
+			matrix1[row][col]=matrix.matrix1[row][col];
+		}
 }

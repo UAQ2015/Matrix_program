@@ -11,6 +11,7 @@ using namespace std;
 class Matrix
 {
 public:
+    Matrix();
     Matrix(int _size1, int _size2);
     ~Matrix();
     void print_matrix ();
@@ -27,6 +28,12 @@ public:
     Matrix add(Matrix matrix2);
     Matrix substract(Matrix matrix2);
     Matrix transpose ();
+
+    void Resize(int i, int i1);
+
+    static Matrix Identity(int i);
+
+    void copy(Matrix matrix);
 };
 
 

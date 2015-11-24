@@ -14,10 +14,20 @@ void menu ()
 	int option=9, print_mode;
 	int _size1, _size2, _size3;
 	float scalar,result;
-	Matrix *matrix1=NULL;
-	Matrix *matrix2=NULL;
-	Matrix *matrix3=NULL;
-	do
+	Matrix matrix1;
+	Matrix matrix2;
+	Matrix matrix3;
+
+	matrix1.Resize(2,2);
+	matrix1.insert();
+	matrix1.print_matrix();
+	Matrix b(2,2);
+	cout<< "Pointer to matrix "<<b.matrix1<< endl;
+	b.copy(matrix1.add(Matrix::Identity(2)));
+	cout<< "Pointer to matrix "<<b.matrix1<< endl;
+	b.print_matrix();
+
+/*	do
 	{
 		do
 		{
@@ -37,9 +47,12 @@ void menu ()
 				cin>>_size1;
 				cout<<"\nGive me the number of columns: ";
 				cin>>_size2;
-				matrix1=new Matrix(_size1,_size2);
-				matrix2=new Matrix(_size1,_size2);
-				matrix3=new Matrix(_size1,_size2);
+//				matrix1=new Matrix(_size1,_size2);
+//				matrix2=new Matrix(_size1,_size2);
+//				matrix3=new Matrix(_size1,_size2);
+				matrix1.Resize(_size1, _size2);
+				matrix2.Resize(_size1, _size2);
+				matrix3.Resize(_size1, _size2);
 				cout<<"\nGive me matrix 1\n";
 				matrix1.insert();
 				cout<<"Give me matrix 2\n";
@@ -58,9 +71,12 @@ void menu ()
 				cin>>_size1;
 				cout<<"\nGive me the number of columns: ";
 				cin>>_size2;
-				matrix1=new Matrix(_size1,_size2);
-				matrix2=new Matrix(_size1,_size2);
-				matrix3=new Matrix(_size1,_size2);
+//				matrix1=new Matrix(_size1,_size2);
+//				matrix2=new Matrix(_size1,_size2);
+//				matrix3=new Matrix(_size1,_size2);
+				matrix1.Resize(_size1, _size2);
+				matrix2.Resize(_size1, _size2);
+				matrix3.Resize(_size1, _size2);
 				cout<<"\nGive me matrix 1\n";
 				matrix1.insert();
 				cout<<"Give me matrix 2\n";
@@ -81,9 +97,13 @@ void menu ()
 				cin>>_size2;
 				cout<<"\nGive me the number of rows of the second matrix: ";
 				cin>>_size3;
-				matrix1=new Matrix(_size1,_size2);
-				matrix2=new Matrix(_size2,_size3);
-				matrix3=new Matrix(_size1,_size3);
+//				matrix1=new Matrix(_size1,_size2);
+//				matrix2=new Matrix(_size2,_size3);
+//				matrix3=new Matrix(_size1,_size3);
+				matrix1.Resize(_size1, _size2);
+				matrix2.Resize(_size2, _size3);
+				matrix3.Resize(_size1, _size3);
+
 				cout<<"\nGive me matrix 1\n";
 				matrix1.insert();
 				cout<<"Give me matrix 2\n";
@@ -102,8 +122,11 @@ void menu ()
 				cin>>_size1;
 				cout<<"\nGive me the number of columns: ";
 				cin>>_size2;
-				matrix1=new Matrix(_size1,_size2);
-				matrix3=new Matrix(_size1,_size2);
+//				matrix1=new Matrix(_size1,_size2);
+//				matrix3=new Matrix(_size1,_size2);
+				matrix1.Resize(_size1, _size2);
+				matrix3.Resize(_size1, _size2);
+
 				cout<<"\nGive me the matrix\n";
 				matrix1.insert();
 				cout<<"Give the scalar\n";
@@ -120,7 +143,9 @@ void menu ()
 			case 5:
 				cout<<"\nGive me the dimention of the matrix: ";
 				cin>>_size1;
-				matrix1=new Matrix(_size1,_size1);
+//				matrix1=new Matrix(_size1,_size1);
+				matrix1.Resize(_size1, _size1);
+
 				cout<<"\nGive me the matrix\n";
 				matrix1.insert();
 				result=matrix1.determinant();
@@ -131,8 +156,11 @@ void menu ()
 				cin>>_size1;
 				cout<<"\nGive me the number of columns: ";
 				cin>>_size2;
-				matrix1=new Matrix(_size1,_size2);
-				matrix2=new Matrix_size2,_size1);
+//				matrix1=new Matrix(_size1,_size2);
+//				matrix2=new Matrix_size2,_size1);
+				matrix1.Resize(_size1, _size2);
+				matrix2.Resize(_size2, _size1);
+
 				cout<<"\nGive me matrix 1\n";
 				matrix1.insert();
 				matrix2.insert_null();
@@ -145,11 +173,14 @@ void menu ()
                                         matrix2.print_matrix();
 
 				break;
-			case 7:
+			case 7: // Inverse
 				cout<<"\nGive me the size: ";
 				cin>>_size1;
-                matrix1=new Matrix(_size1,_size1);
-				matrix2=new Matrix(_size1,_size1);
+//                matrix1=new Matrix(_size1,_size1);
+//				matrix2=new Matrix(_size1,_size1);
+				matrix1.Resize(_size1, _size1);
+				matrix2.Resize(_size1, _size1);
+
 				cout<<"\nGive me the matrix: ";
 				matrix1.insert();
 				if (matrix1.determinant() == 0)
@@ -170,4 +201,5 @@ void menu ()
 				break;
 		}
 	}while(option!=0);
+/* */
 }
