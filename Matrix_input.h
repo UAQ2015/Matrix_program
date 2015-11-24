@@ -29,9 +29,9 @@ public:
     Matrix substract(Matrix matrix2);
     Matrix transpose ();
 
-    void Resize(int i, int i1);
+    void Resize(int _size1, int _size2);
 
-    static Matrix Identity(int i);
+    static Matrix Identity(int s);
 
     void copy(Matrix matrix);
 };
